@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Disha ❤️ Aron</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #ffb3c6, #ffd6e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .screen {
+      position: absolute;
+      width: 100%;
+      max-width: 360px;
+      padding: 24px;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.8s cubic-bezier(.19,1,.22,1);
+    }
+
+    .screen.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* PHOTO SLIDER */
+    .photos {
+      display: flex;
+      overflow: hidden;
+      border-radius: 18px;
+      margin: 16px 0;
+      position: relative;
+    }
+
+    .photos img {
+      width: 100%;
+      flex-shrink: 0;
+      animation: slide 12s infinite;
+      border-radius: 18px;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      58% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      91% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* BUTTONS */
+    .buttons {
+      position: relative;
+      height: 50px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 26px;
+      border-radius: 30px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #yes:active {
+      transform: scale(0.95);
+    }
+
+    #no {
+      background: #eee;
+      position: absolute;
+    }
+
+    /* HEART FLOAT */
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 0.6; }
+      to { transform: translateY(-120px); opacity: 0; }
+    }
+
+    .from {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SCREEN 1 -->
+  <div class="screen active" id="screen1">
+    <h1>Disha 💖</h1>
+    <p>
+      I love you baby to the moon and back 🌙✨<br>
+      I’m so lucky to have you.
+    </p>
+
+    <!-- PHOTOS (replace later) -->
+    <div class="photos">
+      <img src="photo1.jpg">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
+    </div>
+
+    <p>
+      Will you make this Valentine the best Valentine<br>
+      by being mine? 💌
+    </p>
+
+    <div class="buttons">
+      <button id="yes">Yes 💕</button>
+      <button id="no">No 😝</button>
+    </div>
+
+    <div class="from">— Aron</div>
+  </div>
+
+  <!-- SCREEN 2 -->
+  <div class="screen" id="screen2">
+    <h1>YAYYYY 🥹❤️</h1>
+    <p>
+      You just made my heart so happy.<br><br>
+      This Valentine’s Day is ours,<br>
+      and I can’t wait to make memories with you 💘
+    </p>
+    <div class="from">Forever yours,<br>Aron</div>
+  </div>
+
+<script>
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+  const s1 = document.getElementById("screen1");
+  const s2 = document.getElementById("screen2");
+
+  no.addEventListener("mouseover", () => {
+    no.style.transform = `translate(${Math.random()*120-60}px, ${Math.random()*60-30}px)`;
+  });
+
+  yes.addEventListener("click", () => {
+    s1.classList.remove("active");
+    setTimeout(() => s2.classList.add("active"), 400);
+    createHearts();
+  });
+
+  function createHearts() {
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.bottom = "20px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+  }
+</script>
+
+</body>
+</html>
